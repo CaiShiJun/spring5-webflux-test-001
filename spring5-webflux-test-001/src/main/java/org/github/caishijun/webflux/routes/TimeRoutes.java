@@ -20,11 +20,21 @@ public class TimeRoutes {
 
     @Bean
     public RouterFunction<ServerResponse> timerRouter() {
+
+        /**
+         * 2、WebFlux的函数式开发模式
+         */
         return route(GET("/time"), req -> timeHandler.getTime(req))
-            .andRoute(GET("/date"), timeHandler::getDate)  // 这种方式相对于上一行更加简洁
+
 
             /**
-             * 3、WebFlux 服务器推送
+             * 3、WebFlux的函数式开发模式-跨应用测试
+             */
+            .andRoute(GET("/timeAcrossApplication"), timeHandler::getTimeAcrossApplication)  // 这种方式相对于上一行更加简洁
+
+
+            /**
+             * 4、WebFlux 服务器推送
              */
             .andRoute(GET("/times"), timeHandler::sendTimePerSec);
     }

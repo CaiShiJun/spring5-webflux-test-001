@@ -37,18 +37,18 @@ public class WebfluxTest {
     }
 
     /**
-     * 2、WebFlux的函数式开发模式
+     * 3、WebFlux的函数式开发模式-跨应用测试
      */
     @Test
-    public void date() throws Exception {
+    public void timeAcrossApplication() throws Exception {
         for (int i = 0; i < FOR_TIMES; i++) {
-            HttpClientUtils.sendGetRequest(getUrl("/date"));
+            HttpClientUtils.sendGetRequest(getUrl("/timeAcrossApplication"));
             Thread.sleep(SLEEP_TIME);
         }
     }
 
     /**
-     * 3、WebFlux 服务器推送
+     * 4、WebFlux 服务器推送
      */
     @Test
     public void times() throws Exception {
@@ -58,13 +58,26 @@ public class WebfluxTest {
         }
     }
 
+    /**
+     * 5、WebFlux 基于WebMVC注解的方式-跨应用测试
+     */
+    @Test
+    public void mvcWebFluxAcrossApplication() throws Exception {
+        for (int i = 0; i < FOR_TIMES; i++) {
+            HttpClientUtils.sendGetRequest(getUrl("/mvcWebFluxAcrossApplication"));
+            Thread.sleep(SLEEP_TIME);
+        }
+    }
+
+
     @Test
     public void runAll() throws Exception {
         while (true) {
             mvcWebFlux();
             time();
-            date();
+            timeAcrossApplication();
             times();
+            mvcWebFluxAcrossApplication();
         }
     }
 }
