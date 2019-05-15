@@ -15,7 +15,6 @@ import java.util.Date;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 
-
 @Component
 public class TimeHandler {
 
@@ -23,7 +22,10 @@ public class TimeHandler {
      * 2、WebFlux的函数式开发模式
      */
     public Mono<ServerResponse> getTime(ServerRequest serverRequest) {
-        return ok().contentType(MediaType.TEXT_PLAIN).body(Mono.just("Now is " + new SimpleDateFormat("HH:mm:ss").format(new Date())), String.class);
+        return ok().contentType(MediaType.TEXT_PLAIN).body(Mono.just("Now is " +
+                new SimpleDateFormat("HH:mm:ss").format(new Date())
+                   + 1/0
+        ), String.class);
     }
 
 
@@ -34,7 +36,8 @@ public class TimeHandler {
         return ok().contentType(MediaType.TEXT_PLAIN).body(Mono.just(
             "Today is " +
                 HttpClientUtils.sendGetRequest(HttpClientUtils.getUrl("/time"))
-                ), String.class);
+            //       + 1/0
+        ), String.class);
     }
 
 
