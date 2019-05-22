@@ -7,7 +7,7 @@ public class WebfluxTest {
     private static String HOST = "localhost";
     private static int PORT = 8080;
 
-    private static int FOR_TIMES = 1;
+    private static int FOR_TIMES = 3;
     private static int SLEEP_TIME = 0;
 
     public static String getUrl(String uri) {
